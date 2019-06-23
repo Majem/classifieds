@@ -1,0 +1,85 @@
+{% if status.status == true %}
+    <div class="alert alert-success" role="alert">
+        {{ status.msg }}
+    </div>
+{% elseif status.status == false %}
+    <div class="alert alert-danger" role="alert">
+        {{ status.msg }}
+    </div>
+{% endif %}
+
+
+{% if status.status != true %}
+
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <input type="text" class="form-control" id="title" name="title" placeholder="Tytuł ogłoszenia" value="{{ data.title }}" required="">
+            <div class="invalid-feedback">
+                Tytuł jest wymagany
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="country">Platforma</label>
+            <select class="custom-select d-block w-100" name="platform"id="platform" required="">
+                <option value="PC" {% if data.platform == 'PC' %} selected="true" {% endif %}>PC</option>
+                <option value="PS4" {% if data.platform == 'PS4' %} selected="true" {% endif %}>PlayStation 4</option>
+                <option value="PS3" {% if data.platform == 'PS3' %} selected="true" {% endif %}>PlayStation 3</option>
+                <option value="XBOX1" {% if data.platform == 'XBOX1' %} selected="true" {% endif %}>Xbox One</option>
+                <option value="XBOX360" {% if data.platform == 'XBOX360' %} selected="true" {% endif %}>Xbox 360</option>
+                <option value="NS" {% if data.platform == 'NS' %} selected="true" {% endif %}>Nintendo Switch</option>
+            </select>
+            <div class="invalid-feedback">
+                Nieprawidłowa platforma
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="country">Kategoria</label>
+            <select class="custom-select d-block w-100" name="category" id="category" required="">
+                <option {% if data.category == 'Strzelanka' %} selected="true" {% endif %}>Strzelanka</option>
+                <option {% if data.category == 'MMORPG' %} selected="true" {% endif %}>MMORPG</option>
+                <option {% if data.category == 'Symulator' %} selected="true" {% endif %}>Symulator</option>
+                <option {% if data.category == 'Wyścigi' %} selected="true" {% endif %}>Wyścigi</option>
+                <option {% if data.category == 'Przygodowa' %} selected="true" {% endif %}>Przygodowa</option>
+                <option {% if data.category == 'Zręcznościowa' %} selected="true" {% endif %}>Zręcznościowa</option>
+                <option {% if data.category == 'Bijatyka' %} selected="true" {% endif %}>Bijatyka</option>
+                <option {% if data.category == 'Symulatory' %} selected="true" {% endif %}>Symulatory</option>
+            </select>
+            <div class="invalid-feedback">
+                Nieprawidłowa kategoria
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="country">Typ oferty</label>
+            <select class="custom-select d-block w-100" name="type" id="type" required="">
+                <option {% if data.type == 0 %} selected="true" {% endif %} value="0">Sprzedaż</option>
+                <option {% if data.type == 1 %} selected="true" {% endif %} value="1">Wymiana</option>
+            </select>
+            <div class="invalid-feedback">
+                Nieprawidłowa typ oferty
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="country">Stan gry</label>
+            <select class="custom-select d-block w-100" name="state" id="state" required="">
+                <option {% if data.type == "Nowa" %} selected="true" {% endif %}>Nowa</option>
+                <option {% if data.type == "Używana" %} selected="true" {% endif %}>Używana</option>
+            </select>
+            <div class="invalid-feedback">
+                Nieprawidłowa kategoria
+            </div>
+        </div>
+        <div class="col-md-12 mb-3">
+            <label for="description">Opis</label>
+            <textarea class="form-control" name="description" id="description" required="">
+        {% if data.description != "" %} {{ data.description }} {% endif %}
+        </textarea>
+            <div class="invalid-feedback">
+                Nieprawidłowy opis
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="uId" value="{{ user.uId }}" readonly="">
+    <button class="btn btn-primary btn-md btn-block mt-5" type="submit">Dalej</button>
+{% endif %}
